@@ -46,7 +46,7 @@ h1 {
 
     border: 2px solid #000;
     border-radius: 4px;
-    background: #c6c6c6;
+    background: #63a163;
 
     transition: 0.3s;
 }
@@ -70,6 +70,7 @@ h1 {
 }
 
 .badge {
+    font-size: 18px;
     height: 20px;
     margin-right: 10px;
     margin-top: 15px;
@@ -90,6 +91,7 @@ h1 {
 }
 
 .pokemon-number {
+    font-size: 20px;
     color: #000;
     font-weight: bold;
 }
@@ -99,3 +101,18 @@ h1 {
     font-size: 24px;
     font-weight: bold;
 }
+
+.loader {
+    margin: 5% auto;
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

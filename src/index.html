@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/index.css">
+
     <title>Pokédex</title>
 </head>
 <body>
@@ -12,8 +13,10 @@
         <input type="text" name="search" class="search" placeholder=" What Pokémon are you looking for?">
     </header>
 
+    <!--<div class="loader"></div> !-->
+
     <section id="card-list">
-        <ul class="pokemon-list">
+        <ul id="pokemon-list" class="pokemon-list">
             <li>
                 <a class="card">
                     <div class="pokemon-info">
@@ -28,7 +31,7 @@
                                 <img src="https://raw.githubusercontent.com/vinicoder/pokedex/9a20a03d88361a15b20b450e8933b79e9f175259/src/assets/icons/types/Grass.svg" alt="Grass">
                                 Grass
                             </li>
-                            <li class="badge">
+                            <li style="background: #A040A0" class="badge">
                                 <img src="https://raw.githubusercontent.com/vinicoder/pokedex/9a20a03d88361a15b20b450e8933b79e9f175259/src/assets/icons/types/Poison.svg" alt="Grass">
                                 Poison
                             </li>
@@ -38,50 +41,9 @@
                     <img src="https://raw.githubusercontent.com/jnovack/pokemon-svg/3c3ea26da58331d7202e7cdb1aab9b8347d8587f/svg/1.svg" alt="Bulbasaur">
                 </a>
             </li>
-            <li>
-                <a class="card">
-                    <div class="pokemon-info">
-                        <span class="pokemon-number">
-                            #002
-                        </span>
-                        <span class="pokemon-name">
-                            Ivysaur
-                        </span>
-                    </div>
-
-                    <img src="https://raw.githubusercontent.com/jnovack/pokemon-svg/3c3ea26da58331d7202e7cdb1aab9b8347d8587f/svg/2.svg" alt="Ivysaur">
-                </a>
-            </li>
-            <li>
-                <a class="card">
-                    <div class="pokemon-info">
-                        <span class="pokemon-number">
-                            #003
-                        </span>
-                        <span class="pokemon-name">
-                            Venusaur
-                        </span>
-                    </div>
-                    
-                    <img src="https://raw.githubusercontent.com/jnovack/pokemon-svg/3c3ea26da58331d7202e7cdb1aab9b8347d8587f/svg/3.svg" alt="Venusaur">
-                </a>
-            </li>
-            <li>
-                <a class="card">
-                    <div class="pokemon-info">
-                        <span class="pokemon-number">
-                            #004
-                        </span>
-                        <span class="pokemon-name">
-                            Charmander
-                        </span>
-                    </div>
-
-                    <img src="https://raw.githubusercontent.com/jnovack/pokemon-svg/3c3ea26da58331d7202e7cdb1aab9b8347d8587f/svg/4.svg" alt="Ivysaur">
-                </a>
-            </li>
         </ul>
-
     </section>
+
+    <script src="api/ShowPokemons.js"></script>
 </body>
 </html>
