@@ -7,7 +7,7 @@
 
     <title>Pokédex</title>
 </head>
-<body onload="firstLoad()">
+<body onload="loadPokemons()">
     <header>
         <h1>Pokédex</h1>
         <input type="text" name="search" class="search" placeholder=" What Pokémon are you looking for?">
@@ -15,36 +15,12 @@
 
     <section id="card-list">
         <ul id="pokemon-list" class="pokemon-list">
-            <li>
-                <a class="card">
-                    <div class="pokemon-info">
-                        <span class="pokemon-number">
-                            #001
-                        </span>
-                        <span class="pokemon-name">
-                            Bulbasaur
-                        </span>
-                        <ul class="pokemon-type">
-                            <li class="badge">
-                                <img src="https://raw.githubusercontent.com/vinicoder/pokedex/9a20a03d88361a15b20b450e8933b79e9f175259/src/assets/icons/types/Grass.svg" alt="Grass">
-                                Grass
-                            </li>
-                            <li style="background: #A040A0" class="badge">
-                                <img src="https://raw.githubusercontent.com/vinicoder/pokedex/9a20a03d88361a15b20b450e8933b79e9f175259/src/assets/icons/types/Poison.svg" alt="Grass">
-                                Poison
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <img src="https://raw.githubusercontent.com/jnovack/pokemon-svg/3c3ea26da58331d7202e7cdb1aab9b8347d8587f/svg/1.svg" alt="Bulbasaur">
-                </a>
-            </li>
         </ul>
+        <div id="loader" class="loader"></div>
     </section>
-
-    <div id="loader" class="loader"></div>
 
     <script src="api/pokemon.js"></script>
     <script src="index.js"></script>
+
 </body>
 </html>
