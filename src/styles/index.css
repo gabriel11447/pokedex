@@ -3,6 +3,10 @@ h1 {
     text-align: center;
 }
 
+ul {
+    padding: 0;
+}
+
 .search {
     width: 25%;
     height: 40px;
