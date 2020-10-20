@@ -4,10 +4,13 @@ let URL_TO_FETCH = "https://pokeapi.co/api/v2/pokemon?limit=30";
 
 let pokemonArray = [];
 
+const badgeUrl = "https://raw.githubusercontent.com/vinicoder/pokedex/9a20a03d88361a15b20b450e8933b79e9f175259/src/assets/icons/types/";
+const spriteUrl = "https://raw.githubusercontent.com/jnovack/pokemon-svg/3c3ea26da58331d7202e7cdb1aab9b8347d8587f/svg/";
+
 function showPokemons(data) {
     const pokemonList = data.map(pokemon => {
             return `<li>
-            <a class="card" style="background:${types.find(type => type.name == pokemon.types[0].type.name).card}">
+            <a onclick="storePokemonArray(${pokemon.id})" href="../pokemon/pokemon.html" class="card" style="background:${types.find(type => type.name == pokemon.types[0].type.name).card}">
             <div class="pokemon-info">
                 <span class="pokemon-number">
                 #${makeId(pokemon.id, 3)}
@@ -17,13 +20,13 @@ function showPokemons(data) {
                 </span>
                 <ul class="pokemon-type">
                 <li class="badge" style="background:${types.find(type => type.name == pokemon.types[0].type.name).color}">
-                    <img src="https://raw.githubusercontent.com/vinicoder/pokedex/9a20a03d88361a15b20b450e8933b79e9f175259/src/assets/icons/types/${capitalizeFirstLetter(pokemon.types[0].type.name)}.svg" 
+                    <img src="${badgeUrl + capitalizeFirstLetter(pokemon.types[0].type.name)}.svg" 
                     alt="${pokemon.types[0].type.name}">
                     ${capitalizeFirstLetter(pokemon.types[0].type.name)}
                 </li>` +
                 (pokemon.types[1] ? `
                 <li class="badge" style="background:${types.find(type => type.name == pokemon.types[1].type.name).color}">
-                    <img src="https://raw.githubusercontent.com/vinicoder/pokedex/9a20a03d88361a15b20b450e8933b79e9f175259/src/assets/icons/types/${capitalizeFirstLetter(pokemon.types[1].type.name)}.svg" 
+                    <img src="${badgeUrl + capitalizeFirstLetter(pokemon.types[1].type.name)}.svg" 
                     alt="${pokemon.types[1].type.name}">
                     ${capitalizeFirstLetter(pokemon.types[1].type.name)}
                 </li>` 
@@ -31,7 +34,7 @@ function showPokemons(data) {
                 `
                 </ul>
             </div>
-                <img src="https://raw.githubusercontent.com/jnovack/pokemon-svg/3c3ea26da58331d7202e7cdb1aab9b8347d8587f/svg/${(pokemon.id)}.svg">
+                <img src="${spriteUrl + (pokemon.id)}.svg">
             </a>
         </li>
         `;
@@ -73,11 +76,15 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+function storePokemonArray(id) {
+    window.localStorage.setItem('pokemons', JSON.stringify(pokemonArray[id - 1]));
+}
+
 const types = [
     {name: "normal", color: '#A8A77A', card: '#8a8969'},
     {name: "fire", color: '#EE8130', card: '#f28e49'},
     {name: "water", color: '#6390F0', card: '#739df5'},
-	{name: "electric", color: '#F7D02C', card: '#e6bc10'},
+	{name: "electric", color: '#F7D02C', card: '#c9a410'},
 	{name: "grass", color: '#7AC74C', card: '#63a163'},
 	{name: "ice", color: '#96D9D6', card: '#75c7c3'},
 	{name: "fighting", color: '#C22E28', card: '#8f4542'},
