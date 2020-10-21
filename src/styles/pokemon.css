@@ -1,7 +1,3 @@
-body {
-    background-color: #e0e0e0;
-}
-
 .container {
     padding: 25px 250px;
 }
@@ -10,100 +6,45 @@ body {
     list-style: none;
 }
 
-.card {
-    text-decoration: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-    margin: auto;
-    padding: 20px;
-    background: #63a163;
-}
-
 .pokemon-info {
     margin-left: 80px;
-    display: flex;
-    flex-direction: column;
 }
 
-.pokemon-type {
+.info, .stats {
     display: flex;
     align-items: center;
-    padding: 0;
-    list-style: none;
-    color: #fff;
-}
-
-.badge {
-    font-size: 18px;
-    font-weight: bold;
-    height: 20px;
-    margin-right: 10px;
-    margin-top: 15px;
-    padding: 5px;
-    border: 1px solid #000;
-    border-radius: 5px;
-    background: rgb(120, 200, 80);
-}
-
-.pokemon-type li img {
-    height: 15px;
-    width: 15px;
-}
-
-.card img {
-    height: 192px;
-    width: 192px;
-}
-
-
-.pokemon-number {
-    font-size: 20px;
-    color: #000;
-    font-weight: bold;
-}
-
-.pokemon-name {
-    color: #ffffff;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.info-options {
-    background-color: #63a163;
-    display: flex;
-    justify-content: space-evenly;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-.info-options li {
-    text-align: center;
-    padding: 15px;
-    text-decoration: none;
-}
-
-.info-options li a {
-    font-size: 20px;
-    font-weight: bold;
-    color: rgba(211, 211, 211, 0.671);
-
-    cursor: pointer;
-}
-
-.info-options li a:hover {
-    color: white !important;
-}
-
-.active {
-    color: #e7e7e7 !important;
-}
-
-.info {
-    height: 400px;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    padding-bottom: 0;
+    height: auto;
     background-color: white;
+}
+
+.stats {
+    padding-bottom: 20px;
+}
+
+.pokemon-data, .pokemon-stats {
+    font-size: 18px;
+}
+
+.pokemon-data ul, .pokemon-stats ul {
+    padding: 0;
+}
+
+.pokemon-data li, .pokemon-stats li {
+    padding-top: 10px;
+}
+
+.pokemon-data b {
+    display: inline-block;
+    width: 100px;
+    font-size: 14px;
+}
+
+.pokemon-stats b {
+    display: inline-block;
+    width: 150px;
+    font-size: 16px;
 }

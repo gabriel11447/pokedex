@@ -1,20 +1,8 @@
-h1 {
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-ul {
-    padding: 0;
-}
-
-body {
-    background-color: #e0e0e0;
-}
-
 .search {
     width: 25%;
     height: 40px;
     display: block;
+    padding: 0 10px;
     margin-right: auto;
     margin-left: auto;
     -webkit-transition: width 0.4s ease-in-out;
@@ -27,95 +15,41 @@ body {
 
 #card-list {
     margin-top: 20px;
-    padding: 15px;
+    padding: 15px 0 15px 15px;
     margin: 0;
 }
 
-.pokemon-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    list-style: none;
-}
-
-.pokemon-list > li {
-    padding: 15px;
-}
-
 .card {
-    text-decoration: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-
-    min-width: 200px;
-
-    margin: auto;
-    padding: 20px;
-
-    border: 2px solid #000;
-    border-radius: 4px;
-    background: #63a163;
-
-    transition: 0.3s;
-}
+    transition: 0.5s;
+} 
 
 .card:hover {
     transform: scale(1.02);
     cursor: pointer;
 }
 
-.pokemon-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.pokemon-type {
-    display: flex;
-    align-items: center;
-    padding: 0;
-    list-style: none;
-    color: #fff;
-}
-
-.badge {
-    font-size: 18px;
-    font-weight: bold;
-    height: 20px;
-    margin-right: 10px;
-    margin-top: 15px;
-    padding: 5px;
-    border: 1px solid #000;
-    border-radius: 5px;
-    background: rgb(120, 200, 80);
-}
-
-.pokemon-type li img {
-    height: 15px;
-    width: 15px;
-}
-
-.card img {
+.card > img {
     margin-left: auto;
-    height: 192px;
-    width: 192px;
+    transform: rotateY(0deg);
+    transition: transform 1s;
 }
 
-.pokemon-number {
-    font-size: 20px;
-    color: #000;
-    font-weight: bold;
+.card > img:hover {
+    transform: scale(1.1) rotate(10deg);
 }
 
-.pokemon-name {
-    color: #ffffff;
-    font-size: 24px;
-    font-weight: bold;
+.pokemon-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.pokemon-list > li {
+    padding: 15px 15px 0 0;
 }
 
 .loader {
     margin: 5% auto;
-    border: 10px solid #f3f3f3; /* Light grey */
+    border: 10px solid #d0d0d0; /* Light grey */
     border-top: 10px solid #3498db; /* Blue */
     border-radius: 50%;
     width: 40px;
