@@ -10,4 +10,9 @@ function fetchData(url) {
         ))
       })
       .then(promiseAllResponse => promiseAllResponse);
-} 
+}
+
+function fetchDescriptionAndGenus(url) {
+  return fetch(url)
+    .then(response => response.json());
+}
