@@ -1,32 +1,102 @@
+p {
+    line-height: 1;
+    margin: 0 15px 15px;
+    font-size: 20px;
+    white-space: normal;
+}
+
 .container {
-    padding: 25px 250px;
+    display: grid;
+    grid-template-areas:
+        'header header stats'
+        'image image stats'
+        'image image data'
+        'type type data';
+    padding: 20px;
 }
 
-.pokemon-list {
-    list-style: none;
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: auto;
 }
 
-.pokemon-info {
-    margin-left: 80px;
+.container > div {
+    text-align: center;
 }
 
-.info, .stats {
+.header {
+    grid-area: header;
+    -webkit-box-shadow: 1px 0px 0px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 0px 0px 0px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+    padding-top: 15px;
+}
+
+.image {
+    grid-area: image;
+    -webkit-box-shadow: 1px 0px 0px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 0px 0px 0px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+}
+
+.image img {
+    transform: rotateY(0deg);
+    transition: transform 1s;
+}
+
+.image img:hover {
+    transform: scale(1.1) rotate(10deg);
+}
+
+.data {
+    grid-area: data;
+}
+
+.type {
+    grid-area: type;
+    -webkit-box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+}
+
+.pokemon-type {
+    justify-content: center;
+}
+
+.badge {
+    margin-bottom: 15px;
+}
+
+.data, .stats {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 20px;
+    margin: 0 0 20px 20px;
     padding-bottom: 0;
     height: auto;
+    -webkit-box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
     background-color: white;
+    width: 445px;
+}
+
+.data {
+    margin-bottom: 0;
 }
 
 .stats {
+    grid-area: stats;
     padding-bottom: 20px;
 }
 
 .pokemon-data, .pokemon-stats {
     font-size: 18px;
+    text-align: left;
 }
 
 .pokemon-data ul, .pokemon-stats ul {

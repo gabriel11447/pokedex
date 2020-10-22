@@ -1,23 +1,19 @@
 let pokemonArray = [];
-
-window.makeActive = function(event) {
-    document.querySelectorAll('ul li a.active').forEach(function(item) {
-    item.classList.remove('active');
-  })
-    event.target.classList.add("active");
-};
+let background = "";
 
 function getPokemonArray() {
     pokemonArray = JSON.parse(window.localStorage.getItem('pokemons'));
-    //  localStorage.clear();
+    background = types.find(type => type.name == pokemonArray.types[0].type.name).card;
+    // localStorage.clear();
+    fetchDescriptionAndGenus(pokemonArray.species.url).then(data => {
+        console.log(data.flavor_text_entries[0].flavor_text)
+        makePokemonInfo(data)});
     makePokemonCard();
-    makePokemonInfo();
 }
 
 function makePokemonCard() {
   const pokemonCard = `
-  <div class="card" style="background:${types.find(type => type.name == pokemonArray.types[0].type.name).card}">
-    <img src="${spriteUrl + pokemonArray.id}.png" alt="${pokemonArray.name}">
+  <div class="header" style="background:${background}">
     <div class="pokemon-info">
         <span class="pokemon-number">
             #${makeId(pokemonArray.id, 3)}
@@ -25,82 +21,132 @@ function makePokemonCard() {
         <span class="pokemon-name">
             ${capitalizeFirstLetter(pokemonArray.species.name)}
         </span>
+      </div>
+    </div>
+    <div class="image" style="background:${background}">
+        <img src="${spriteUrl + pokemonArray.id}.png" alt="${pokemonArray.name}">
+    </div>
+    <div class="type" style="background:${background}">
         <ul class="pokemon-type">
-          <li class="badge" style="background:${types.find(type => type.name == pokemonArray.types[0].type.name).color}">
+        <li class="badge" style="background:${types.find(type => type.name == pokemonArray.types[0].type.name).color}">
             <img src="${badgeUrl + capitalizeFirstLetter(pokemonArray.types[0].type.name)}.svg" 
             alt="${pokemonArray.types[0].type.name}">
             ${capitalizeFirstLetter(pokemonArray.types[0].type.name)}
-          </li>` +
-          (pokemonArray.types[1] ? `
-          <li class="badge" style="background:${types.find(type => type.name == pokemonArray.types[1].type.name).color}">
+        </li>` +
+        (pokemonArray.types[1] ? `
+        <li class="badge" style="background:${types.find(type => type.name == pokemonArray.types[1].type.name).color}">
             <img src="${badgeUrl + capitalizeFirstLetter(pokemonArray.types[1].type.name)}.svg" 
             alt="${pokemonArray.types[1].type.name}">
             ${capitalizeFirstLetter(pokemonArray.types[1].type.name)}
-          </li>` 
+        </li>` 
     : "") +
     `
         </ul>
     </div>
-  </div>
   `;
-  document.querySelector("header")
+  document.querySelector(".container")
   .insertAdjacentHTML("afterbegin", pokemonCard);
 }
 
-function makePokemonInfo() {
+function makePokemonInfo(data) {
   const pokemonInfo = `
-  <h2>Pokédex Data</h2>
-  <div class="pokemon-data">
-      <ul>
-          <li>
-              <span>
-                  <b>Species</b>
-                  ${pokemonArray.species.name}
-              </span>
-          </li>
-          <li>
-              <span>
-                  <b>Height</b>
-                  0.${pokemonArray.height}m
-              </span>
-          </li>
-          <li>
-              <span>
-                  <b>Weight</b>
-                  ${pokemonArray.weight}kg
-              </span>
-          </li>
-          <li>
-              <span>
-                  <b>Abilites</b>
-                  1. ${capitalizeFirstLetter(pokemonArray.abilities[0].ability.name)}
-                  2. ${capitalizeFirstLetter(pokemonArray.abilities[1].ability.name)}
-              </span>
-          </li>
-      </ul>
-  </div>            
-  `;
-  document.querySelector("#info")
-  .insertAdjacentHTML("afterbegin", pokemonInfo);
-
-  const pokemonData = `
-  <h2>Stats</h2>
-    <div class="pokemon-stats">
-        <ul>` +
-        (pokemonArray.stats.map(status => {
-            return `
+  <div class="data">
+    <p>
+        ${makeDescription(data.flavor_text_entries[0].flavor_text)}
+    </p>
+    <h2>Pokédex Data</h2>
+    <div class="pokemon-data">
+        <ul>
             <li>
                 <span>
-                    <b>${capitalizeFirstLetter(status.stat.name)}</b>
-                    ${status.base_stat}
+                    <b>Species</b>
+                    ${data.genera[7].genus}
                 </span>
             </li>
-            `
-        })
-        .join("")) + `
+            <li>
+                <span>
+                    <b>Height</b>
+                    ${makeDecimal(pokemonArray.height, pokemonArray.height.toString().length)}m
+                </span>
+            </li>
+            <li>
+                <span>
+                    <b>Weight</b>
+                    ${makeDecimal(pokemonArray.weight, pokemonArray.weight.toString().length)}kg
+                </span>
+            </li>
+            <li>
+                <span>
+                    <b>Abilites</b>
+                        1. ${capitalizeFirstLetter(pokemonArray.abilities[0].ability.name)}
+                        ${pokemonArray.abilities[1] ? `2. ${capitalizeFirstLetter(pokemonArray.abilities[1].ability.name)}`: ""}
+                </span>
+            </li>
         </ul>
     </div>
+  </div>
   `;
-  document.querySelector("#stats")
-  .insertAdjacentHTML("afterbegin", pokemonData);
+  document.querySelector(".container")
+  .insertAdjacentHTML("beforeend", pokemonInfo);
+
+  const pokemonData = `
+  <div class="stats">
+    <h2>Stats</h2>
+        <div class="pokemon-stats">
+            <ul>
+							<li>
+								<span>
+									<b>HP</b>
+									${pokemonArray.stats[0].base_stat}
+								</span>
+							</li>
+							<li>
+								<span>
+									<b>ATK</b>
+									${pokemonArray.stats[1].base_stat}
+								</span>
+							</li>
+							<li>
+								<span>
+									<b>DEF</b>
+									${pokemonArray.stats[2].base_stat}
+								</span>
+							</li>
+							<li>
+								<span>
+									<b>SATK</b>
+									${pokemonArray.stats[3].base_stat}
+								</span>
+							</li>
+							<li>
+								<span>
+									<b>SDEF</b>
+									${pokemonArray.stats[4].base_stat}
+								</span>
+							</li>
+							<li>
+								<span>
+									<b>SPD</b>
+									${pokemonArray.stats[5].base_stat}
+								</span>
+							</li>
+            </ul>
+        </div>
+    </div>
+  `;
+  document.querySelector(".container")
+  .insertAdjacentHTML("beforeend", pokemonData);
+}
+
+function makeDecimal(number, length) {
+    let numberString = number.toString();
+    let n = numberString.substr(0, length - 1) + "." + numberString.substr(length - 1);
+    if (n[0] == ".") n = "0" + n;
+    return n;
+}
+
+function makeDescription(desc) {
+    let content = desc.toString().replace(/\f/g, ' ').split('\f');
+
+    return content;
 }
