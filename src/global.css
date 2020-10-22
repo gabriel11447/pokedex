@@ -10,7 +10,7 @@ h1 {
 
 h2 {
     font-size: 20px;
-    margin: 0;
+    margin: 15px 0;
 }
 
 ul {
@@ -18,6 +18,8 @@ ul {
 }
 
 body {
+    width: 100vw;
+    height: 100vh;
     margin: 0;
     padding: 0;
     background-color: #e0e0e0;
@@ -32,7 +34,9 @@ body {
 
     margin: auto;
     padding: 20px;
-    background: #63a163;
+    -webkit-box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
 }
 
 .pokemon-info {
