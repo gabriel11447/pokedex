@@ -2,11 +2,10 @@ let pokemonArray = [];
 let background = "";
 
 function getPokemonArray() {
-    pokemonArray = JSON.parse(window.localStorage.getItem('pokemons'));
+    pokemonArray = JSON.parse(window.localStorage.getItem('pokemon'));
     background = types.find(type => type.name == pokemonArray.types[0].type.name).card;
-    // localStorage.clear();
+    //localStorage.clear();
     fetchDescriptionAndGenus(pokemonArray.species.url).then(data => {
-        console.log(data.flavor_text_entries[0].flavor_text)
         makePokemonInfo(data)});
     makePokemonCard();
 }

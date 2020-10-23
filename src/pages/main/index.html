@@ -14,13 +14,14 @@
 </head>
 <body onload="loadPokemons()">
     <header>
-        <input type="text" name="search" class="search" placeholder=" What Pokémon are you looking for?">
+        <input type="text" id="search" name="search" class="search" placeholder=" What Pokémon are you looking for?">
     </header>
 
     <section id="card-list">
         <ul id="pokemon-list" class="pokemon-list">
         </ul>
         <div id="loader" class="loader"></div>
+        <div id="error" class="error hidden"></div>
     </section>
 
     <script src="../../api/pokemon.js"></script>

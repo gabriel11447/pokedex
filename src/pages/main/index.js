@@ -3,6 +3,9 @@ let calls = 0;
 let URL_TO_FETCH = "https://pokeapi.co/api/v2/pokemon?limit=30";
 
 let pokemonArray = [];
+let searchedPokemon = [];
+
+let flagSearch = 0;
 
 function showPokemons(data) {
     const pokemonList = data.map(pokemon => {
@@ -37,32 +40,88 @@ function showPokemons(data) {
         `;
     })
     .join("");
-    console.log(pokemonList);
     document.querySelector("#pokemon-list")
     .insertAdjacentHTML("beforeend", pokemonList);
 }
 
 function loadPokemons() {
     calls++;
+    document.getElementById('loader').classList.remove("hidden");
     fetchData(URL_TO_FETCH).then(data => {
         pokemonArray = [...pokemonArray, ...data];
-        showPokemons(data)
+        showPokemons(data);
     })
     .catch(error => {
-        console.log(error)
+        console.log(error);
     })
-    document.getElementById('loader').style.display = 'none';
 }
 
 window.onscroll = function() {
-    document.getElementById('loader').style.display = 'flex';
+    document.getElementById('loader').classList.remove("hidden");
 
     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
         loadPokemons();
-        document.getElementById('loader').style.display = 'none';
+        document.getElementById('loader').classList.add("hidden");
     }
 };
 
 function storePokemonArray(id) {
-    window.localStorage.setItem('pokemons', JSON.stringify(pokemonArray[id - 1]));
+    if (pokemonArray[id - 1] != null) {
+        window.localStorage.setItem('pokemon', JSON.stringify(pokemonArray[id - 1]));
+    } else {
+        window.localStorage.setItem('pokemon', JSON.stringify(searchedPokemon[0]));
+    }
 }
+
+function removeSearchedPokemon() {
+    const ul = document.getElementById("pokemon-list");
+    const lis = ul.querySelectorAll('#pokemon-list > li');
+    let size = lis.length - 1;
+    lis[size].classList.add("hidden");
+    lis[size].remove();
+    searchedPokemon.pop();
+    flagSearch = 0;
+}
+
+const inputSearch = document.getElementById("search");
+inputSearch.addEventListener("keyup", (event) => {
+    if (event.key === 'Enter') {
+        if (flagSearch == 1) {
+            removeSearchedPokemon();
+        }
+        if (inputSearch.value != "") {
+            flagSearch = 1;
+            document.getElementById('loader').classList.remove("hidden");
+            fetchForSearch("https://pokeapi.co/api/v2/pokemon/" + inputSearch.value.toLowerCase()).then(data => {
+                const ul = document.getElementById("pokemon-list");
+                const lis = ul.querySelectorAll('li');
+                for (let i = 0;i <= lis.length - 1; i++) {
+                    lis[i].classList.add("hidden");
+                }
+                if (data != 404) {
+                    document.getElementById("error").classList.add('hidden');
+                    searchedPokemon.push(data);
+                    showPokemons(searchedPokemon);
+                } else {
+                    const error = document.getElementById('error');
+                    error.innerHTML = "<p>0 results found.</p>"
+                    error.classList.remove('hidden');
+                }
+                document.getElementById('loader').classList.add("hidden");
+                inputSearch.value = "";
+                inputSearch.blur()
+
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        } else {
+            const ul = document.getElementById("pokemon-list");
+            const lis = ul.querySelectorAll('#pokemon-list > li');
+            for (let i = 0;i <= lis.length - 1; i++) {
+                lis[i].classList.remove("hidden");
+            }
+            if (flagSearch == 1) removeSearchedPokemon();
+        }
+    }
+})
