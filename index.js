@@ -10,7 +10,7 @@ let flagSearch = 0;
 function showPokemons(data) {
     const pokemonList = data.map(pokemon => {
             return `<li>
-            <a onclick="storePokemonArray(${pokemon.id})" href="../pokemon/pokemon.html" class="card" style="background:${types.find(type => type.name == pokemon.types[0].type.name).card}">
+            <a onclick="storePokemonArray(${pokemon.id})" href="src/pages/pokemon/pokemon.html" class="card" style="background:${types.find(type => type.name == pokemon.types[0].type.name).card}">
             <div class="pokemon-info">
                 <span class="pokemon-number">
                 #${makeId(pokemon.id, 3)}
