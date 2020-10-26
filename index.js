@@ -1,9 +1,9 @@
 let URL_TO_FETCH = "https://pokeapi.co/api/v2/pokemon?limit=1050";
 
 let pokemonArray = [];
-let searchedPokemon = [];
+let searchedPokemons = [];
 
-let flagSearch = 0;
+let calls = 0;
 
 function showPokemons(data) {
     const pokemonList = data.map(pokemon => createCard(pokemon)).join("");
@@ -14,12 +14,23 @@ function showPokemons(data) {
 function loadPokemons() {
     document.getElementById('loader').classList.remove("hidden");
     fetchData(URL_TO_FETCH).then(data => {
-        pokemonArray = [...pokemonArray, ...data];
-        showPokemons(data);
+        pokemonArray = pokemonArray.concat(data.results);
+        renderPokemons();
     })
     .catch(error => {
         console.log(error);
     })
+}
+
+function renderPokemons() {
+    let pokemons = pokemonArray.slice(30*calls, 30 + 30*calls);
+    calls++;
+    getPokemons(pokemons).then(data => showPokemons(data));
+}
+
+function showSearchedPokemons(pokemons) {
+    calls = 0;
+    getPokemons(pokemons).then(data => showPokemons(data));
 }
 
 function storePokemonArray(id) {
