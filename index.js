@@ -9,6 +9,7 @@ function showPokemons(data) {
     const pokemonList = data.map(pokemon => createCard(pokemon)).join("");
     document.querySelector("#pokemon-list")
     .insertAdjacentHTML("beforeend", pokemonList);
+    document.getElementById("loader").classList.add('hidden');
 }
 
 function loadPokemons() {
@@ -30,13 +31,13 @@ function renderPokemons() {
 
 function showSearchedPokemons(pokemons) {
     calls = 0;
+    window.removeEventListener('scroll', infiniteScroll);
     getPokemons(pokemons).then(data => showPokemons(data));
 }
 
 function storePokemonArray(id) {
-    if (pokemonArray[id - 1] != null) {
-        window.localStorage.setItem('pokemon', JSON.stringify(pokemonArray[id - 1]));
-    } else {
-        window.localStorage.setItem('pokemon', JSON.stringify(searchedPokemon[0]));
-    }
+    fetchData(pokemonArray[id - 1].url)
+        .then(pokemon => window.localStorage.setItem('pokemon', JSON.stringify(pokemon)))
+        .catch(error => console.log(error));
+    
 }
