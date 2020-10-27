@@ -28,11 +28,19 @@ p {
 }
 
 .header {
+    display: flex;
+    justify-content: center;
     grid-area: header;
     -webkit-box-shadow: 1px 0px 0px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 1px 0px 0px 0px rgba(0,0,0,0.75);
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
     padding-top: 15px;
+}
+
+.header img {
+    width: 25px;
+    padding-left: 20px;
+    padding-top: 20px;
 }
 
 .image {
@@ -42,13 +50,10 @@ p {
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
 }
 
-.image img {
-    transform: rotateY(0deg);
-    transition: transform 1s;
-}
-
-.image img:hover {
-    transform: scale(1.1) rotate(10deg);
+.pokemon-info {
+    flex: 1;
+    justify-content: center;
+    margin-right: 45px;
 }
 
 .data {

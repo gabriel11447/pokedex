@@ -4,7 +4,7 @@ let background = "";
 function getPokemonArray() {
     pokemonArray = JSON.parse(window.localStorage.getItem('pokemon'));
     background = types.find(type => type.name == pokemonArray.types[0].type.name).card;
-    //localStorage.clear();
+    localStorage.clear();
     fetchDescriptionAndGenus(pokemonArray.species.url).then(data => {
         makePokemonInfo(data)});
     makePokemonCard();
@@ -13,6 +13,9 @@ function getPokemonArray() {
 function makePokemonCard() {
   const pokemonCard = `
   <div class="header" style="background:${background}">
+  <a href="../../../index.html">
+      <img src="https://www.flaticon.com/svg/static/icons/svg/61/61022.svg">
+  </a>
     <div class="pokemon-info">
         <span class="pokemon-number">
             #${makeId(pokemonArray.id, 3)}
@@ -77,8 +80,8 @@ function makePokemonInfo(data) {
             <li>
                 <span>
                     <b>Abilites</b>
-                        1. ${capitalizeFirstLetter(pokemonArray.abilities[0].ability.name)}
-                        ${pokemonArray.abilities[1] ? `2. ${capitalizeFirstLetter(pokemonArray.abilities[1].ability.name)}`: ""}
+                        ${capitalizeFirstLetter(pokemonArray.abilities[0].ability.name)}`
+                        + `${pokemonArray.abilities[1] ? `, ${capitalizeFirstLetter(pokemonArray.abilities[1].ability.name)}`: ""}
                 </span>
             </li>
         </ul>
@@ -93,42 +96,42 @@ function makePokemonInfo(data) {
     <h2>Stats</h2>
         <div class="pokemon-stats">
             <ul>
-							<li>
-								<span>
-									<b>HP</b>
-									${pokemonArray.stats[0].base_stat}
-								</span>
-							</li>
-							<li>
-								<span>
-									<b>ATK</b>
-									${pokemonArray.stats[1].base_stat}
-								</span>
-							</li>
-							<li>
-								<span>
-									<b>DEF</b>
-									${pokemonArray.stats[2].base_stat}
-								</span>
-							</li>
-							<li>
-								<span>
-									<b>SATK</b>
-									${pokemonArray.stats[3].base_stat}
-								</span>
-							</li>
-							<li>
-								<span>
-									<b>SDEF</b>
-									${pokemonArray.stats[4].base_stat}
-								</span>
-							</li>
-							<li>
-								<span>
-									<b>SPD</b>
-									${pokemonArray.stats[5].base_stat}
-								</span>
-							</li>
+                <li>
+                    <span>
+                        <b>HP</b>
+                        ${pokemonArray.stats[0].base_stat}
+                    </span>
+                </li>
+                <li>
+                    <span>
+                        <b>ATK</b>
+                        ${pokemonArray.stats[1].base_stat}
+                    </span>
+                </li>
+                <li>
+                    <span>
+                        <b>DEF</b>
+                        ${pokemonArray.stats[2].base_stat}
+                    </span>
+                </li>
+                <li>
+                    <span>
+                        <b>SATK</b>
+                        ${pokemonArray.stats[3].base_stat}
+                    </span>
+                </li>
+                <li>
+                    <span>
+                        <b>SDEF</b>
+                        ${pokemonArray.stats[4].base_stat}
+                    </span>
+                </li>
+                <li>
+                    <span>
+                        <b>SPD</b>
+                        ${pokemonArray.stats[5].base_stat}
+                    </span>
+                </li>
             </ul>
         </div>
     </div>
