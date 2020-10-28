@@ -36,8 +36,11 @@ function showSearchedPokemons(pokemons) {
 }
 
 function storePokemonArray(id) {
-    fetchData(pokemonArray[id - 1].url)
-        .then(pokemon => window.localStorage.setItem('pokemon', JSON.stringify(pokemon)))
+    fetchData(pokemonArray[id].url)
+        .then(pokemon => {
+            window.localStorage.setItem('pokemon', JSON.stringify(pokemon));
+            document.location.pathname = 'src/pages/pokemon/pokemon.html';
+        })
         .catch(error => console.log(error));
     
 }
