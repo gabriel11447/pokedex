@@ -4,9 +4,7 @@ let background = "";
 function getPokemonArray() {
     pokemonArray = JSON.parse(window.localStorage.getItem('pokemon'));
     background = types.find(type => type.name == pokemonArray.types[0].type.name).card;
-    localStorage.clear();
-    fetchDescriptionAndGenus(pokemonArray.species.url).then(data => {
-        makePokemonInfo(data)});
+    fetchDescriptionAndGenus(pokemonArray.species.url).then(data => makePokemonInfo(data));
     makePokemonCard();
 }
 
@@ -26,7 +24,7 @@ function makePokemonCard() {
       </div>
     </div>
     <div class="image" style="background:${background}">
-        <img src="${spriteUrl + pokemonArray.id}.png" alt="${pokemonArray.name}">
+        <img src="${checkSpriteUrl(pokemonArray.id)}.png" alt="${pokemonArray.name}">
     </div>
     <div class="type" style="background:${background}">
         <ul class="pokemon-type">
@@ -51,7 +49,34 @@ function makePokemonCard() {
 }
 
 function makePokemonInfo(data) {
-  const pokemonInfo = `
+    const pokemonStats = `
+    <div class="stats">
+      <h2>Stats</h2>
+          <div class="pokemon-stats">
+              <ul>` +
+              (`${pokemonArray.stats.map((stat, index) => {
+                  return `
+                  <li>
+                      <div class="graph">
+                      <b>${stats[index].stat}</b>
+                          <div class="bar-graph">
+                              <div class="bar" style="background:${background};width: ${((stat.base_stat)/stats[index].max)*100}%")></div>
+                          </div>
+                          <span>
+                              ${stat.base_stat}
+                          </span>
+                      </div>
+                  </li>`;
+              }).join("")}`)
+                 + ` 
+              </ul>
+          </div>
+      </div>
+    `;
+    document.querySelector(".container")
+    .insertAdjacentHTML("beforeend", pokemonStats);
+
+  const pokemonData = `
   <div class="data">
     <p>
         ${makeDescription(data.flavor_text_entries[0].flavor_text)}
@@ -61,8 +86,8 @@ function makePokemonInfo(data) {
         <ul>
             <li>
                 <span>
-                    <b>Species</b>
-                    ${data.genera[7].genus}
+                    <b>Species</b>`
+                    + (data.genera[7] ? `${data.genera[7].genus}` : "Not defined") + `
                 </span>
             </li>
             <li>
@@ -79,62 +104,14 @@ function makePokemonInfo(data) {
             </li>
             <li>
                 <span>
-                    <b>Abilites</b>
-                        ${capitalizeFirstLetter(pokemonArray.abilities[0].ability.name)}`
-                        + `${pokemonArray.abilities[1] ? `, ${capitalizeFirstLetter(pokemonArray.abilities[1].ability.name)}`: ""}
+                    <b>Abilites</b>`
+                        + `${pokemonArray.abilities[0] ? `${capitalizeFirstLetter(pokemonArray.abilities[0].ability.name)}` : "Not defined"}`
+                        + `${pokemonArray.abilities[1] ? `, ${capitalizeFirstLetter(pokemonArray.abilities[1].ability.name)}` : ""}
                 </span>
             </li>
         </ul>
     </div>
   </div>
-  `;
-  document.querySelector(".container")
-  .insertAdjacentHTML("beforeend", pokemonInfo);
-
-  const pokemonData = `
-  <div class="stats">
-    <h2>Stats</h2>
-        <div class="pokemon-stats">
-            <ul>
-                <li>
-                    <span>
-                        <b>HP</b>
-                        ${pokemonArray.stats[0].base_stat}
-                    </span>
-                </li>
-                <li>
-                    <span>
-                        <b>ATK</b>
-                        ${pokemonArray.stats[1].base_stat}
-                    </span>
-                </li>
-                <li>
-                    <span>
-                        <b>DEF</b>
-                        ${pokemonArray.stats[2].base_stat}
-                    </span>
-                </li>
-                <li>
-                    <span>
-                        <b>SATK</b>
-                        ${pokemonArray.stats[3].base_stat}
-                    </span>
-                </li>
-                <li>
-                    <span>
-                        <b>SDEF</b>
-                        ${pokemonArray.stats[4].base_stat}
-                    </span>
-                </li>
-                <li>
-                    <span>
-                        <b>SPD</b>
-                        ${pokemonArray.stats[5].base_stat}
-                    </span>
-                </li>
-            </ul>
-        </div>
-    </div>
   `;
   document.querySelector(".container")
   .insertAdjacentHTML("beforeend", pokemonData);
@@ -152,3 +129,12 @@ function makeDescription(desc) {
 
     return content;
 }
+
+const stats = [
+    {stat: 'HP', max: 255},
+    {stat: 'ATK', max: 190}, 
+    {stat: 'DEF', max: 250}, 
+    {stat: 'SATK', max: 194}, 
+    {stat: 'SDEF', max: 250}, 
+    {stat: 'SPD', max: 200}
+];

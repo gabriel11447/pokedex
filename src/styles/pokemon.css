@@ -48,6 +48,12 @@ p {
     -webkit-box-shadow: 1px 0px 0px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 1px 0px 0px 0px rgba(0,0,0,0.75);
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+    display: flex;
+}
+
+.image img {
+    width: 475px;
+    height: 475px;
 }
 
 .pokemon-info {
@@ -112,6 +118,30 @@ p {
     padding-top: 10px;
 }
 
+.pokemon-stats {
+    width: 80%;
+}
+
+.graph {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.bar-graph {
+    width: 100%;
+    margin: 0 8px;
+}
+
+.pokemon-li > span {
+    margin-left: 5px;
+}
+
+.bar {
+    border-radius: 5px;
+    height: 15px;
+}
+
 .pokemon-data b {
     display: inline-block;
     width: 100px;
@@ -120,6 +150,6 @@ p {
 
 .pokemon-stats b {
     display: inline-block;
-    width: 150px;
+    min-width: 40px;
     font-size: 16px;
 }
