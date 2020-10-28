@@ -1,7 +1,7 @@
 function createCard(pokemon) {
     return `
     <li>
-        <a onclick="storePokemonArray(${pokemon.id})" href="src/pages/pokemon/pokemon.html" class="card" style="background:${types.find(type => type.name == pokemon.types[0].type.name).card}">
+        <a onclick="storePokemonArray(${checkId(pokemon.id - 1)})" class="card" style="background:${types.find(type => type.name == pokemon.types[0].type.name).card}">
         <div class="pokemon-info">
             <span class="pokemon-number">
             #${makeId(pokemon.id, 3)}
@@ -25,7 +25,7 @@ function createCard(pokemon) {
             `
             </ul>
         </div>
-            <img src="${spriteUrl + (pokemon.id)}.png">
+            <img src="${checkSpriteUrl(pokemon.id)}.png">
         </a>
     </li>`;
 }
