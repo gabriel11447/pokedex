@@ -1,3 +1,5 @@
+let idFlag = 0;
+
 function removeSearchedPokemon() {
     document.getElementById("pokemon-list").remove();
     let size = searchedPokemons.length - 1;
@@ -13,10 +15,15 @@ inputSearch.addEventListener("keyup", (event) => {
         document.getElementById("error").classList.add('hidden');
         removeSearchedPokemon();
         if (inputSearch.value != "") {
-            let inputNumber = parseInt(inputSearch.value);
-            if (!isNaN(inputNumber)) {
+            if (!isNaN(inputSearch.value)) {
                 searchedPokemons = pokemonArray.filter((input, index) => {
+                    if(inputSearch.value >= 10001) {
+                        inputSearch.value = 893 + (inputSearch.value - 10000);
+                        idFlag = 1;
+                    }
                     if ((index + 1).toString().includes(inputSearch.value)) {
+                        if (index >= 893 && idFlag != 1) return;
+                        idFlag = 0;
                         return input;
                     }
             })
