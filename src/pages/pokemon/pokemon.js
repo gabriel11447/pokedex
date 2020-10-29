@@ -24,6 +24,7 @@ function makePokemonCard() {
       </div>
     </div>
     <div class="image" style="background:${background}">
+        <img src="${badgeUrl + capitalizeFirstLetter(pokemonArray.types[0].type.name)}.svg">
         <img src="${checkSpriteUrl(pokemonArray.id)}.png" alt="${pokemonArray.name}">
     </div>
     <div class="type" style="background:${background}">
@@ -58,9 +59,9 @@ function makePokemonInfo(data) {
                   return `
                   <li>
                       <div class="graph">
-                      <b>${stats[index].stat}</b>
+                      <b>${stats[index]}</b>
                           <div class="bar-graph">
-                              <div class="bar" style="background:${background};width: ${((stat.base_stat)/stats[index].max)*100}%")></div>
+                              <div class="bar" style="background:${background};width: ${((stat.base_stat)/255)*100}%")></div>
                           </div>
                           <span>
                               ${stat.base_stat}
@@ -87,7 +88,7 @@ function makePokemonInfo(data) {
             <li>
                 <span>
                     <b>Species</b>`
-                    + (data.genera[7] ? `${data.genera[7].genus}` : "Not defined") + `
+                    + (data.genera[7] ? ` ${data.genera[7].genus}` : " Not defined") + `
                 </span>
             </li>
             <li>
@@ -105,7 +106,7 @@ function makePokemonInfo(data) {
             <li>
                 <span>
                     <b>Abilites</b>`
-                        + `${pokemonArray.abilities[0] ? `${capitalizeFirstLetter(pokemonArray.abilities[0].ability.name)}` : "Not defined"}`
+                        + `${pokemonArray.abilities[0] ? ` ${capitalizeFirstLetter(pokemonArray.abilities[0].ability.name)}` : " Not defined"}`
                         + `${pokemonArray.abilities[1] ? `, ${capitalizeFirstLetter(pokemonArray.abilities[1].ability.name)}` : ""}
                 </span>
             </li>
@@ -130,11 +131,4 @@ function makeDescription(desc) {
     return content;
 }
 
-const stats = [
-    {stat: 'HP', max: 255},
-    {stat: 'ATK', max: 190}, 
-    {stat: 'DEF', max: 250}, 
-    {stat: 'SATK', max: 194}, 
-    {stat: 'SDEF', max: 250}, 
-    {stat: 'SPD', max: 200}
-];
+const stats = ['HP', 'ATK', 'DEF', 'SATK', 'SDEF', 'SPD'];
