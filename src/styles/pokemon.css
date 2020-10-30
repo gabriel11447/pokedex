@@ -35,6 +35,7 @@ p {
     -moz-box-shadow: 1px 0px 0px 0px rgba(0,0,0,0.75);
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
     padding-top: 15px;
+    padding-bottom: 5px;
 }
 
 .header img {
