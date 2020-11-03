@@ -1,17 +1,12 @@
-function fetchData(url) {
-  return fetch(url)
-  .then(response => response.json())
+async function getPokemons(pokemons) {
+  let response = await Promise.all(pokemons.map(async pokemon => {
+    let responsePromiseAll = await (await fetch(pokemon.url)).json();
+    return responsePromiseAll;
+  }))
+  return response;
 }
 
-function getPokemons(pokemons) {
-  return Promise.all(pokemons.map(pokemon => {
-    return fetch(pokemon.url)
-      .then(response => response.json())
-  })
-  )
-}
-
-function fetchDescriptionAndGenus(url) {
-  return fetch(url)
-    .then(response => response.json());
+async function fetchData(url) {
+  let response = await(await fetch(url)).json();
+  return response;
 }
