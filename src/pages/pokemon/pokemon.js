@@ -4,7 +4,7 @@ let background = "";
 function getPokemonArray() {
     pokemonArray = JSON.parse(window.localStorage.getItem('pokemon'));
     background = types.find(type => type.name == pokemonArray.types[0].type.name).card;
-    fetchDescriptionAndGenus(pokemonArray.species.url).then(data => makePokemonInfo(data));
+    fetchData(pokemonArray.species.url).then(data => makePokemonInfo(data));
     makePokemonCard();
 }
 

@@ -26,12 +26,13 @@ inputSearch.addEventListener("keyup", (event) => {
                         idFlag = 0;
                         return input;
                     }
-            })
+                })
             } else {
                 searchedPokemons = pokemonArray.filter(input => input.name.includes(inputSearch.value.toLowerCase()));
             }
             document.getElementById("card-list")
             .insertAdjacentHTML("afterbegin", `<ul id="pokemon-list" class="pokemon-list"></ul>`);
+            
             if (searchedPokemons.length > 0) {
                 showSearchedPokemons(searchedPokemons);
             } else {
