@@ -3,7 +3,7 @@ body {
 }
 
 .search {
-    width: 25%;
+    width: 40%;
     height: 40px;
     display: block;
     padding: 0 10px;
@@ -15,7 +15,7 @@ body {
 }
 
 .search:focus {
-    width: 27%;
+    width: 45%;
 }
 
 .hidden {
@@ -68,7 +68,7 @@ body {
     text-align: center;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1490px) {
     .pokemon-list {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -83,13 +83,34 @@ body {
     
     #card-list {
         justify-content: center;
+        margin: 0 10%;
     }
 }
 
-@media (min-width: 1280px) {
+@media (max-width: 680px) {
+    .pokemon-list {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    
+    #card-list {
+        justify-content: center;
+        margin: auto;
+    }
+}
+
+@media (min-width: 1490px) {
     
     .pokemon-list {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    .search {
+        width: 30%;
+    }
+
+    .search:focus {
+        width: 32%;
     }
 }
