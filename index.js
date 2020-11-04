@@ -12,35 +12,46 @@ function showPokemons(data) {
     document.getElementById("loader").classList.add('hidden');
 }
 
-function loadPokemons() {
+async function loadPokemons() {
     document.getElementById('loader').classList.remove("hidden");
-    fetchData(URL_TO_FETCH).then(data => {
+    try {
+        const data = await fetchData(URL_TO_FETCH);
         pokemonArray = pokemonArray.concat(data.results);
         renderPokemons();
-    })
-    .catch(error => {
+    } catch(error) {
         console.log(error);
-    })
+    }
 }
 
-function renderPokemons() {
+async function renderPokemons() {
     let pokemons = pokemonArray.slice(30*calls, 30 + 30*calls);
     calls++;
-    getPokemons(pokemons).then(data => showPokemons(data));
+    try {
+        const data = await getPokemons(pokemons);
+        showPokemons(data);
+    } catch(error) {
+        console.log(error);
+    }
 }
 
-function showSearchedPokemons(pokemons) {
+async function showSearchedPokemons(pokemons) {
     calls = 0;
     window.removeEventListener('scroll', infiniteScroll);
-    getPokemons(pokemons).then(data => showPokemons(data));
+    try {
+        const data = await getPokemons(pokemons);
+    showPokemons(data);
+    } catch(error) {
+        console.log(error);
+    }
 }
 
-function storePokemonArray(id) {
-    fetchData(pokemonArray[id].url)
-        .then(pokemon => {
-            window.localStorage.setItem('pokemon', JSON.stringify(pokemon));
-            document.location.pathname = 'src/pages/pokemon/pokemon.html';
-        })
-        .catch(error => console.log(error));
+async function storePokemonArray(id) {
+    const pokemon = await fetchData(pokemonArray[id].url)
+    try {
+        window.localStorage.setItem('pokemon', JSON.stringify(pokemon));
+        document.location.pathname = 'src/pages/pokemon/pokemon.html';
+    } catch(error) {
+        console.log(error); 
+    } 
     
 }
