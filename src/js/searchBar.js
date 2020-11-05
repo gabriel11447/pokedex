@@ -1,5 +1,7 @@
 let idFlag = 0;
 
+let inputMask = "";
+
 function removeSearchedPokemon() {
     document.getElementById("pokemon-list").remove();
     let size = searchedPokemons.length - 1;
@@ -18,6 +20,7 @@ inputSearch.addEventListener("keyup", (event) => {
             if (!isNaN(inputSearch.value)) {
                 searchedPokemons = pokemonArray.filter((input, index) => {
                     if(inputSearch.value >= 10001) {
+                        inputMask = inputSearch.value;
                         inputSearch.value = 893 + (inputSearch.value - 10000);
                         idFlag = 1;
                     }
@@ -27,12 +30,12 @@ inputSearch.addEventListener("keyup", (event) => {
                         return input;
                     }
                 })
-            } else {
-                searchedPokemons = pokemonArray.filter(input => input.name.includes(inputSearch.value.toLowerCase()));
-            }
+            } else searchedPokemons = pokemonArray.filter(input => input.name.includes(inputSearch.value.toLowerCase()));
             document.getElementById("card-list")
             .insertAdjacentHTML("afterbegin", `<ul id="pokemon-list" class="pokemon-list"></ul>`);
-            
+            inputMask ? inputSearch.value = inputMask : null;
+            inputMask = "";
+
             if (searchedPokemons.length > 0) {
                 showSearchedPokemons(searchedPokemons);
             } else {
@@ -41,7 +44,6 @@ inputSearch.addEventListener("keyup", (event) => {
                 document.getElementById("loader").classList.add('hidden');
                 error.classList.remove('hidden');
             }
-            inputSearch.value = "";
             inputSearch.blur()
         } else {
             document.getElementById("card-list")
