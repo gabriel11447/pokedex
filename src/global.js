@@ -2,8 +2,6 @@ const badgeUrl =
   "https://raw.githubusercontent.com/vinicoder/pokedex/9a20a03d88361a15b20b450e8933b79e9f175259/src/assets/icons/types/";
 const spriteUrl =
   "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
-const spriteUrl2 =
-  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
 
 function makeId(id, length) {
   var len = length - ("" + id).length;
@@ -15,9 +13,6 @@ function capitalizeFirstLetter(string) {
 }
 
 function checkSpriteUrl(id) {
-  if (id > 721 && id < 894) {
-    return spriteUrl2 + id;
-  }
   return spriteUrl + id;
 }
 
