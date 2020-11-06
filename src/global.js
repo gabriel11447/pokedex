@@ -30,7 +30,7 @@ const types = [
   { name: "electric", color: "#F8D030", card: "#e0bd31" },
   { name: "grass", color: "#7AC74C", card: "#63a163" },
   { name: "ice", color: "#98D8D8", card: "#75c7c3" },
-  { name: "fighting", color: "#C22E28", card: "#8f4542" },
+  { name: "fighting", color: "#C22E28", card: "#9b4104" },
   { name: "poison", color: "#A33EA1", card: "#a865a7" },
   { name: "ground", color: "#E2BF65", card: "#a18b54" },
   { name: "flying", color: "#A98FF3", card: "#bba6f5" },
