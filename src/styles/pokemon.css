@@ -254,4 +254,9 @@ p {
         padding: 0;
         width: 100%;
     }
+
+    .data h2, span {
+        font-size: 14px;
+    }
+
 }
