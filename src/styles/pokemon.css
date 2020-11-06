@@ -130,6 +130,9 @@ p {
 
 .graph span {
     font-size: 16px;
+    min-width: 27px;
+    display: flex;
+    justify-content: flex-start;
 }
 
 .bar-graph {
