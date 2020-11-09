@@ -13,13 +13,13 @@ function createCard(pokemon) {
             <li class="badge" style="background:${types.find(type => type.name == pokemon.types[0].type.name).color}">
                 <img src="${badgeUrl + capitalizeFirstLetter(pokemon.types[0].type.name)}.svg" 
                 alt="${pokemon.types[0].type.name}">
-                ${capitalizeFirstLetter(pokemon.types[0].type.name)}
+                ${pokemon.types[0].type.name}
             </li>` +
             (pokemon.types[1] ? `
             <li class="badge" style="background:${types.find(type => type.name == pokemon.types[1].type.name).color}">
                 <img src="${badgeUrl + capitalizeFirstLetter(pokemon.types[1].type.name)}.svg" 
                 alt="${pokemon.types[1].type.name}">
-                ${capitalizeFirstLetter(pokemon.types[1].type.name)}
+                ${pokemon.types[1].type.name}
             </li>` 
             : "") +
             `
