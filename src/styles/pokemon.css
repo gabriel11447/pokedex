@@ -20,7 +20,7 @@ p {
 .pokemon {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     grid-area: pokemon;
     -webkit-box-shadow: 4px 4px 8px rgba(0,0,0,0.50);
     -moz-box-shadow: 4px 4px 8px rgba(0,0,0,0.50);
@@ -170,7 +170,7 @@ p {
     align-items: center;
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1360px) {
     .container {
         display: grid;
         grid-template-areas:
@@ -197,13 +197,9 @@ p {
         width: 60%;
     }
 
-    .header {
-        padding-top: 0;
-    }
-
 }
 
-@media (max-width: 1280px){
+@media (max-width: 1360px){
     .container {
         display: grid;
         grid-template-areas:
@@ -213,7 +209,6 @@ p {
             'pokemon pokemon data';
         padding: 20px;
     }
-
 
 }
 
