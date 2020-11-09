@@ -17,13 +17,19 @@ p {
     text-align: center;
 }
 
+.pokemon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    grid-area: pokemon;
+    -webkit-box-shadow: 4px 4px 8px rgba(0,0,0,0.50);
+    -moz-box-shadow: 4px 4px 8px rgba(0,0,0,0.50);
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.50);
+}
+
 .header {
     display: flex;
     justify-content: center;
-    grid-area: header;
-    -webkit-box-shadow: 1px 0px 0px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 1px 0px 0px 0px rgba(0,0,0,0.75);
-    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
     padding-top: 15px;
     padding-bottom: 5px;
 }
@@ -35,10 +41,6 @@ p {
 }
 
 .image {
-    grid-area: image;
-    -webkit-box-shadow: 1px 0px 0px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 1px 0px 0px 0px rgba(0,0,0,0.75);
-    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,17 +64,6 @@ p {
     margin-right: 45px;
 }
 
-.data {
-    grid-area: data;
-}
-
-.type {
-    grid-area: type;
-    -webkit-box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.75);
-    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
-}
-
 .pokemon-type {
     justify-content: center;
 }
@@ -89,14 +80,15 @@ p {
     margin: 0 0 20px 20px;
     padding-bottom: 0;
     height: auto;
-    -webkit-box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
-    box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 4px 4px 8px rgba(0,0,0,0.50);
+    -moz-box-shadow: 4px 4px 8px rgba(0,0,0,0.50);
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.50);
     background-color: white;
     width: 445px;
 }
 
 .data {
+    grid-area: data;
     margin-bottom: 0;
 }
 
@@ -182,14 +174,13 @@ p {
     .container {
         display: grid;
         grid-template-areas:
-            'header header stats'
-            'image image stats'
-            'image image data'
-            'type type data';
+            'pokemon pokemon stats'
+            'pokemon pokemon stats'
+            'pokemon pokemon data'
+            'pokemon pokemon data';
         width: 70%;
         height: 80%;
         grid-template-columns: 50%;
-        grid-template-rows: 12% 38% 40% 10%;
     }
 
     .data, .stats {
@@ -206,16 +197,20 @@ p {
         width: 60%;
     }
 
+    .header {
+        padding-top: 0;
+    }
+
 }
 
 @media (max-width: 1280px){
     .container {
         display: grid;
         grid-template-areas:
-            'header header stats'
-            'image image stats'
-            'image image data'
-            'type type data';
+            'pokemon pokemon stats'
+            'pokemon pokemon stats'
+            'pokemon pokemon data'
+            'pokemon pokemon data';
         padding: 20px;
     }
 
@@ -230,9 +225,7 @@ p {
     .container {
         display: grid;
         grid-template-areas:
-            'header '
-            'image'
-            'type'
+            'pokemon'
             'stats'
             'data';
         padding: 20px;

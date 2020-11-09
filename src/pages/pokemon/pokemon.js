@@ -10,39 +10,41 @@ function getPokemonArray() {
 
 function makePokemonCard() {
   const pokemonCard = `
-  <div class="header" style="background:${background}">
-  <a href="../../../index.html">
-      <img src="https://www.flaticon.com/svg/static/icons/svg/61/61022.svg">
-  </a>
-    <div class="pokemon-info">
-        <span class="pokemon-number">
-            #${makeId(pokemonArray.id, 3)}
-        </span>
-        <span class="pokemon-name">
-            ${capitalizeFirstLetter(pokemonArray.species.name)}
-        </span>
-      </div>
-    </div>
-    <div class="image" style="background:${background}">
-        <img src="${badgeUrl + capitalizeFirstLetter(pokemonArray.types[0].type.name)}.svg">
-        <img src="${checkSpriteUrl(pokemonArray.id)}.png" alt="${pokemonArray.name}">
-    </div>
-    <div class="type" style="background:${background}">
-        <ul class="pokemon-type">
-        <li class="badge" style="background:${types.find(type => type.name == pokemonArray.types[0].type.name).color}">
-            <img src="${badgeUrl + capitalizeFirstLetter(pokemonArray.types[0].type.name)}.svg" 
-            alt="${pokemonArray.types[0].type.name}">
-            ${capitalizeFirstLetter(pokemonArray.types[0].type.name)}
-        </li>` +
-        (pokemonArray.types[1] ? `
-        <li class="badge" style="background:${types.find(type => type.name == pokemonArray.types[1].type.name).color}">
-            <img src="${badgeUrl + capitalizeFirstLetter(pokemonArray.types[1].type.name)}.svg" 
-            alt="${pokemonArray.types[1].type.name}">
-            ${capitalizeFirstLetter(pokemonArray.types[1].type.name)}
-        </li>` 
-    : "") +
-    `
-        </ul>
+  <div class="pokemon" style="background:${background}">
+    <div class="header" style="background:${background}">
+    <a href="../../../index.html">
+        <img src="https://www.flaticon.com/svg/static/icons/svg/61/61022.svg">
+    </a>
+        <div class="pokemon-info">
+            <span class="pokemon-number">
+                #${makeId(pokemonArray.id, 3)}
+            </span>
+            <span class="pokemon-name">
+                ${capitalizeFirstLetter(pokemonArray.species.name)}
+            </span>
+        </div>
+        </div>
+        <div class="image" style="background:${background}">
+            <img src="${badgeUrl + capitalizeFirstLetter(pokemonArray.types[0].type.name)}.svg">
+            <img src="${checkSpriteUrl(pokemonArray.id)}.png" alt="${pokemonArray.name}">
+        </div>
+        <div class="type" style="background:${background}">
+            <ul class="pokemon-type">
+            <li class="badge" style="background:${types.find(type => type.name == pokemonArray.types[0].type.name).color}">
+                <img src="${badgeUrl + capitalizeFirstLetter(pokemonArray.types[0].type.name)}.svg" 
+                alt="${pokemonArray.types[0].type.name}">
+                ${capitalizeFirstLetter(pokemonArray.types[0].type.name)}
+            </li>` +
+            (pokemonArray.types[1] ? `
+            <li class="badge" style="background:${types.find(type => type.name == pokemonArray.types[1].type.name).color}">
+                <img src="${badgeUrl + capitalizeFirstLetter(pokemonArray.types[1].type.name)}.svg" 
+                alt="${pokemonArray.types[1].type.name}">
+                ${capitalizeFirstLetter(pokemonArray.types[1].type.name)}
+            </li>` 
+        : "") +
+        `
+            </ul>
+        </div>
     </div>
   `;
   document.querySelector(".container")
