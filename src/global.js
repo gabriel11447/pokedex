@@ -2,6 +2,7 @@ const badgeUrl =
   "https://raw.githubusercontent.com/vinicoder/pokedex/9a20a03d88361a15b20b450e8933b79e9f175259/src/assets/icons/types/";
 const spriteUrl =
   "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
+const spriteUrl2 = "https://pngimg.com/uploads/pokeball/pokeball_PNG8";
 
 function makeId(id, length) {
   var len = length - ("" + id).length;
@@ -13,6 +14,9 @@ function capitalizeFirstLetter(string) {
 }
 
 function checkSpriteUrl(id) {
+  if ((id > 10026 && id < 10033) || id == 10061 || (id > 10079 && id < 10086) || (id > 10090 && id < 10157)) {
+    return spriteUrl2;
+  }
   return spriteUrl + id;
 }
 
