@@ -170,35 +170,6 @@ p {
     align-items: center;
 }
 
-@media (min-width: 1360px) {
-    .container {
-        display: grid;
-        grid-template-areas:
-            'pokemon pokemon stats'
-            'pokemon pokemon stats'
-            'pokemon pokemon data'
-            'pokemon pokemon data';
-        width: 70%;
-        height: 80%;
-        grid-template-columns: 50%;
-    }
-
-    .data, .stats {
-        width: 100%
-    }
-
-    .image img:first-child {
-        height: auto;
-        width: 38%;
-        max-width: 480px;
-    }
-
-    .pokemon-stats {
-        width: 60%;
-    }
-
-}
-
 @media (max-width: 1360px){
     .container {
         display: grid;
@@ -243,8 +214,53 @@ p {
         width: 100%;
     }
 
-    .data h2, span {
-        font-size: 14px;
+    .pokemon-data {
+        width: 50%;
+    }
+
+    p {
+        font-size: 17px !important;
+    }
+
+    .data h2 {
+        font-size: 18px;
+        width: 100%;
+    }
+
+    .data b {
+        font-size: 18px;
+    }
+
+    .data span {
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 1360px) {
+    .container {
+        display: grid;
+        grid-template-areas:
+            'pokemon pokemon stats'
+            'pokemon pokemon stats'
+            'pokemon pokemon data'
+            'pokemon pokemon data';
+        width: 70%;
+        height: 80%;
+        grid-template-columns: 50%;
+    }
+
+    .data, .stats {
+        width: 100%
+    }
+
+    .image img:first-child {
+        height: auto;
+        width: 38%;
+        max-width: 480px;
+    }
+
+    .pokemon-stats {
+        width: 60%;
     }
 
 }

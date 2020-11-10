@@ -54,7 +54,7 @@ header {
     transition: transform 1s;
 }
 
-.card > img:hover {
+.card:hover > img {
     transform: scale(1.1) rotate(10deg);
 }
 
@@ -85,6 +85,7 @@ header {
 
 .error {
     text-align: center;
+    margin-top: 15px;
 }
 
 @media (max-width: 1490px) {
