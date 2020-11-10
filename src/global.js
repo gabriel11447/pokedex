@@ -14,7 +14,7 @@ function capitalizeFirstLetter(string) {
 }
 
 function checkSpriteUrl(id) {
-  if ((id > 10026 && id < 10033) || id == 10061 || (id > 10079 && id < 10086) || (id > 10090 && id < 10157)) {
+  if ((id > 10026 && id < 10033) || id == 10061 || (id > 10079 && id < 10086) || (id > 10090 && id < 10158)) {
     return spriteUrl2;
   }
   return spriteUrl + id;
