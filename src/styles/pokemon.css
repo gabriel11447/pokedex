@@ -174,10 +174,8 @@ p {
     .container {
         display: grid;
         grid-template-areas:
-            'pokemon pokemon stats'
-            'pokemon pokemon stats'
-            'pokemon pokemon data'
-            'pokemon pokemon data';
+            'pokemon stats'
+            'pokemon data';
         padding: 20px;
     }
 
@@ -218,8 +216,12 @@ p {
         width: 50%;
     }
 
+    .pokemon-data ul {
+        width: 300px;
+    }
+
     p {
-        font-size: 17px !important;
+        font-size: 18px;
     }
 
     .data h2 {
@@ -228,11 +230,12 @@ p {
     }
 
     .data b {
-        font-size: 18px;
+        font-size: 14px;
+        width: 80px;
     }
 
     .data span {
-        font-size: 24px;
+        font-size: 16px;
     }
 }
 
@@ -240,10 +243,8 @@ p {
     .container {
         display: grid;
         grid-template-areas:
-            'pokemon pokemon stats'
-            'pokemon pokemon stats'
-            'pokemon pokemon data'
-            'pokemon pokemon data';
+            'pokemon stats'
+            'pokemon data';
         width: 70%;
         height: 80%;
         grid-template-columns: 50%;

@@ -119,11 +119,12 @@ header {
     }
 
     header {
-        height: 7%;
+        height: 6%;
     }
 
     .search {
         margin-top: 2%;
+        height: 35px;
     }
 }
 
